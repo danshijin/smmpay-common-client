@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+        http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://code.alibabatech.com/schema/dubbo  
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd  
+        ">  
+  
+    <!-- 消费方应用名，用于计算依赖关系，不是匹配条件，不要与提供方一样 -->  
+    <dubbo:application name="hehe_consumer" />  
+  
+    <!-- 使用zookeeper注册中心暴露服务地址 -->  
+    <!-- <dubbo:registry address="multicast://224.5.6.7:1234" /> -->  
+
+     <!--<dubbo:registry address="zookeeper://172.16.9.19:2181" />-->
+
+    <dubbo:reference id="authorService"  interface="com.smmpay.inter.AuthorService" url="dubbo://172.16.9.203:20880/com.smmpay.inter.AuthorService"/>
+    <dubbo:reference id="userAccountService"  timeout="500000" interface="com.smmpay.inter.smmpay.UserAccountService" url="dubbo://172.16.9.203:20880/com.smmpay.inter.smmpay.UserAccountService"/>
+    <dubbo:reference id="openAccountService"  timeout="500000" interface="com.smmpay.inter.smmpay.OpenAccountService" url="dubbo://172.16.9.203:20880/com.smmpay.inter.smmpay.OpenAccountService"/>
+    <dubbo:reference id="bankService"   timeout="500000" interface="com.smmpay.inter.smmpay.BankService" url="dubbo://172.16.9.203:20880/com.smmpay.inter.smmpay.BankService"/>
+    <dubbo:reference id="tradingRecordService"   timeout="200000" interface="com.smmpay.inter.smmpay.TradingRecordService" url="dubbo://172.16.9.203:20880/com.smmpay.inter.smmpay.TradingRecordService"/>
+</beans> 
